@@ -1,5 +1,13 @@
+### To Install
 
-to run local
-`npm run dev` (requires npx to be installed)
+```bash
+cd homiefy-a
+npm install
+```
 
+### To Run
 
+```bash
+cd homiefy-a
+npm start
+```
