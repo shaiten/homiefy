@@ -4,7 +4,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
-import Home from "./components/Home";
+import Posts from "./components/Posts";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <div className="App">
         <Navbar />
         <div className=".container-fluid justify-content-cente">
-          <Route exact path="/home" component={Home} />
+          <Route exact path="/home" component={Posts} />
         </div>
       </div>
     </Router>
