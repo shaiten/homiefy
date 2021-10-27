@@ -1,19 +1,24 @@
-import React from 'react'
 import "./App.css";
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Posts from "./components/Posts";
+import AuthProvider from "./contexts/AuthContext";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar />
-        <div className=".container-fluid justify-content-cente">
-          <Route exact path="/home" component={Posts} />
-        </div>
+        <AuthProvider>
+          <Navbar />
+          <div className="container">
+            <Switch>
+              <PrivateRoute exact path="/posts" component={Posts} />
+            </Switch>
+          </div>
+        </AuthProvider>
       </div>
     </Router>
   );
