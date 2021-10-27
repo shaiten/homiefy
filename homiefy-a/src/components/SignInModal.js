@@ -1,26 +1,41 @@
-import React, { useState } from "react";
-import { supabase } from "../supabaseClient";
+import React, { useState, useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { supabase } from "../supabaseClient";
 
 const SignInModal = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const emailRef = useRef();
+  const passwordRef = useRef();
   const history = useHistory();
 
-  const handleSignIn = (email, password) => {
+  const { currentUser, setcurruser } = useAuth();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSignIn = () => {
+    if (emailRef.current.value === "" || passwordRef.current.value === "") {
+      return setError("Please Enter All the Fields!");
+    }
+
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+
     supabase.auth
       .signIn({ email, password })
       .then((response) => {
         if (response.error) {
+          return setError("Invalid email or password");
           console.log(response.error.message);
         } else {
+          setcurruser(supabase.auth.user());
           console.log("Sign In successfull");
           console.log(response);
-          history.push("/home");
+          history.push("/posts");
         }
       })
       .catch((err) => {
         console.log(err.response.text);
+        return setError("Invalid Credentials!");
       });
   };
 
@@ -30,13 +45,14 @@ const SignInModal = () => {
       id="signInModal"
       tabIndex="-1"
       aria-labelledby="signInModalLabel"
+      data-bs-backdrop="false"
       aria-hidden="true"
     >
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="signInModalLabel">
-              Sign In Form
+              Sign in to your account
             </h5>
             <button
               type="button"
@@ -53,8 +69,8 @@ const SignInModal = () => {
                   name="email"
                   className="form-control"
                   placeholder="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  ref={emailRef}
+                  required={true}
                 />
               </div>
               <div className="mb-3">
@@ -63,10 +79,15 @@ const SignInModal = () => {
                   name="password"
                   className="form-control"
                   placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  ref={passwordRef}
+                  required={true}
                 />
               </div>
+              {error && <div className="alert alert-danger">{error}</div>}
+              {currentUser && currentUser.email}
+              {currentUser
+                ? console.log("curr user is ", currentUser.email)
+                : console.log("no curr user")}
             </form>
           </div>
           <div className="modal-footer">
@@ -79,12 +100,12 @@ const SignInModal = () => {
             </button>
             <button
               type="button"
+              disabled={loading}
               onClick={(e) => {
                 e.preventDefault();
-                handleSignIn(email, password);
+                handleSignIn();
               }}
               className="btn btn-primary"
-              data-bs-dismiss="modal"
             >
               Sign In
             </button>
