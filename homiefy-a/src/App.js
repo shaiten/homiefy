@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Posts from "./components/Posts";
@@ -19,7 +19,7 @@ function App() {
 						<Switch>
 							<PrivateRoute exact path="/posts" component={Posts} />
 							<PrivateRoute exact path="/profiles" component={Profiles} />
-							<PrivateRoute exact path="/contact" component={Contact} />
+							<Route exact path="/contact" component={Contact} />
 						</Switch>
 					</div>
 				</AuthProvider>
