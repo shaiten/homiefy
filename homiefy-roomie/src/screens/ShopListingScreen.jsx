@@ -1,6 +1,5 @@
 import React, { Component, useEffect, useRef, useState } from "react";
 
-import RoommateCard from "../components/RoommateCard";
 import { useAuth } from "../contexts/AuthContext";
 
 import _ from "lodash";
@@ -15,19 +14,19 @@ import WebButton from "../components/WebButton";
 //Input Components
 import WebInput from "../components/WebInput";
 
-//Constants
-import Colors from "../constants/Colors";
-
 import { useNavigate } from "react-router";
 
 import RentCard from "../components/RentCard";
 import Paginate from "../components/Paginate";
 import Footer from "../components/Footer";
-import { useShop } from "../contexts/ShopContext";
 import Sidebar from "../components/Sidebar";
+
+//shop context
+import { useShop } from "../contexts/ShopContext";
 
 const PAGE_SIZE = 20;
 
+//Screen for listing of shopable items
 function ShopListingScreen(props) {
 	const { shopItems } = useShop();
 	const { users, currentUser } = useAuth();

@@ -1,14 +1,17 @@
 import _ from "lodash";
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router";
-import { signIn } from "../api/AuthApi";
-import { insertShopItem } from "../api/ShopApi";
+
 import WebButton from "../components/WebButton";
-import { supabase } from "../config/supabase";
 import Format from "../constants/Format";
+
+//Authentication context
 import { useAuth } from "../contexts/AuthContext";
+
+//SHop context
 import { useShop } from "../contexts/ShopContext";
 
+//Screen for adding shopable item
 function AddShopItemScreen(props) {
 	//Authentication Hook
 	const { currentUser } = useAuth();

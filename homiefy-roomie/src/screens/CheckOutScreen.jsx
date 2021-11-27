@@ -4,18 +4,16 @@ import { useParams, useNavigate } from "react-router-dom";
 //Component
 import WebButton from "../components/WebButton";
 
-//Constants
-import Hobbies from "../constants/Hobbies";
-
 //Hooks
 import { useAuth } from "../contexts/AuthContext";
 
 //Lodash
 import _ from "lodash";
-import Colors from "../constants/Colors";
-import { useShop } from "../contexts/ShopContext";
-import ReactDatePicker from "react-datepicker";
 
+//shop context
+import { useShop } from "../contexts/ShopContext";
+
+//Checkout screen for payment
 function CheckOutScreen(props) {
 	const { users, currentUser } = useAuth();
 	const { shopItems, handleShopItem } = useShop();

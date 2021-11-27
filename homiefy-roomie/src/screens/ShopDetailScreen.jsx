@@ -13,22 +13,26 @@ import { useAuth } from "../contexts/AuthContext";
 //Lodash
 import _ from "lodash";
 import Colors from "../constants/Colors";
-import { useShop } from "../contexts/ShopContext";
 
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+//shop context
+import { useShop } from "../contexts/ShopContext";
+
+//Shop Detail Screen
 function ShopDetailScreen(props) {
 	const { users, currentUser } = useAuth();
 	const { shopItems, handleShopItem, handleShopItemDelete } = useShop();
 
 	const [loading, setLoading] = useState(false);
 	const [shopItem, setShopItem] = useState();
-	const [shopUser, setShopUser] = useState();
 	const [shopingDate, setShopingDate] = useState();
+	const [shopUser, setShopUser] = useState();
 
 	const [isOwner, setIsOwner] = useState(false);
 
+	//hooks
 	const params = useParams();
 	const navigate = useNavigate();
 
