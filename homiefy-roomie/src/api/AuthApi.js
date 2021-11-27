@@ -1,5 +1,21 @@
 import { supabase } from "../config/supabase";
 
+//sign in method for login
+const signIn = (user, observer) => {
+	console.log("====================================");
+	console.log(user);
+	console.log("====================================");
+	supabase.auth
+		.signIn({ email: user.email, password: user.password })
+		.then(({ error, data }) => {
+			if (error) return observer({ error });
+			else {
+				getUser(user.email, observer);
+			}
+		});
+};
+
+//Signup method for registration
 const signUp = (user, observer) => {
 	getUser(user.email, ({ error, data }) => {
 		if (data) {
@@ -26,20 +42,7 @@ const signUp = (user, observer) => {
 	});
 };
 
-const signIn = (user, observer) => {
-	console.log("====================================");
-	console.log(user);
-	console.log("====================================");
-	supabase.auth
-		.signIn({ email: user.email, password: user.password })
-		.then(({ error, data }) => {
-			if (error) return observer({ error });
-			else {
-				getUser(user.email, observer);
-			}
-		});
-};
-
+// function to the the user detail
 const getUser = (email, observer) => {
 	supabase
 		.from("users")
@@ -52,6 +55,7 @@ const getUser = (email, observer) => {
 		});
 };
 
+//function to insert the user detail during registration
 const insertUser = (user, observer) => {
 	console.log("Inserting User");
 
@@ -70,6 +74,7 @@ const insertUser = (user, observer) => {
 		});
 };
 
+// function to update the user detail
 const updateUser = (user, observer) => {
 	console.log("Updating User");
 
