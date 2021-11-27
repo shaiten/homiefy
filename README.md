@@ -8,13 +8,13 @@ On this platform users must register with a valid .edu email to have access to a
 ### To Install
 
 ```bash
-cd homiefy-a
+cd homiefy-roomie
 npm install
 ```
 
 ### To Run
 
 ```bash
-cd homiefy-a
+cd homiefy-roomie
 npm start
 ```
