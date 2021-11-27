@@ -18,15 +18,18 @@ import WebInput from "../components/WebInput";
 //Constants
 import Hobbies from "../constants/Hobbies";
 import Colors from "../constants/Colors";
-import { useRent } from "../contexts/RentContext";
 import RentCard from "../components/RentCard";
 import { useNavigate } from "react-router";
 import Paginate from "../components/Paginate";
 import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar";
 
+// Rent Context
+import { useRent } from "../contexts/RentContext";
+
 const PAGE_SIZE = 20;
 
+// Screen for listing rents
 function RentsListingScreen(props) {
 	const { rentItems } = useRent();
 	const { users, currentUser } = useAuth();

@@ -12,6 +12,7 @@ import Format from "../constants/Format";
 import { useAuth } from "../contexts/AuthContext";
 import { useRent } from "../contexts/RentContext";
 
+// Screen for adding items for rent
 function AddRentItemScreen(props) {
 	//Authentication Hook
 	const { currentUser } = useAuth();

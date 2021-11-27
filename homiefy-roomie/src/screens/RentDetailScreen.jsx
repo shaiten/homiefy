@@ -13,11 +13,14 @@ import { useAuth } from "../contexts/AuthContext";
 //Lodash
 import _ from "lodash";
 import Colors from "../constants/Colors";
-import { useRent } from "../contexts/RentContext";
 
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+//Rent Context
+import { useRent } from "../contexts/RentContext";
+
+//Rent Detail Screen
 function RentDetailScreen(props) {
 	const { users, currentUser } = useAuth();
 	const { rentItems, handleRentItem, handleRentItemDelete } = useRent();
