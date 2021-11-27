@@ -1,8 +1,12 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router";
-import { signIn } from "../api/AuthApi";
 import WebButton from "../components/WebButton";
+
+//authentication
 import { useAuth } from "../contexts/AuthContext";
+import { signIn } from "../api/AuthApi";
+
+//login screen
 
 function LoginScreen(props) {
 	//Authentication Hook
