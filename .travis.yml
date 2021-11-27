@@ -6,7 +6,7 @@ cache: npm
 
 script:
   - CI=false npm run build
-  - npm start
+  - npm test
   
 deploy:
   providers: pages
