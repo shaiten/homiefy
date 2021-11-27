@@ -6,6 +6,7 @@ import WebButton from "../components/WebButton";
 import Format from "../constants/Format";
 
 //Authentication context
+
 import { useAuth } from "../contexts/AuthContext";
 
 //SHop context
@@ -17,6 +18,7 @@ function AddShopItemScreen(props) {
 	const { currentUser } = useAuth();
 	const { loading, insertShopItem } = useShop();
 
+	//navigtion hook
 	const navigate = useNavigate();
 
 	const [message, setMessage] = useState();
@@ -25,8 +27,8 @@ function AddShopItemScreen(props) {
 
 	const title = useRef();
 	const price = useRef();
-	const edition = useRef();
 	const isbn = useRef();
+	const edition = useRef();
 	const format = useRef();
 	const authors = useRef();
 	const publisher = useRef();

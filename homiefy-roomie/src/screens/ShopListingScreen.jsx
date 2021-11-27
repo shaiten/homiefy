@@ -30,11 +30,11 @@ const PAGE_SIZE = 20;
 function ShopListingScreen(props) {
 	const { shopItems } = useShop();
 	const { users, currentUser } = useAuth();
+	const [loading, setLoading] = useState(true);
+	const [totalPages, setTotalPages] = useState(0);
 	const [currentPage, setCurrentPage] = useState(0);
 	const [filteredItems, setFilteredItems] = useState(shopItems);
 	const [paginatedItems, setPaginatedItems] = useState(null);
-	const [loading, setLoading] = useState(true);
-	const [totalPages, setTotalPages] = useState(0);
 
 	// Using Navigate
 	const navigate = useNavigate();

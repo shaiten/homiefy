@@ -21,6 +21,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useShop } from "../contexts/ShopContext";
 
 //Shop Detail Screen
+
 function ShopDetailScreen(props) {
 	const { users, currentUser } = useAuth();
 	const { shopItems, handleShopItem, handleShopItemDelete } = useShop();
