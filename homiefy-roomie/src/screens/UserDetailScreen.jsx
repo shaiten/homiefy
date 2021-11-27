@@ -7,13 +7,14 @@ import WebButton from "../components/WebButton";
 //Constants
 import Hobbies from "../constants/Hobbies";
 
-//Hooks
+//Hooks for authentication
 import { useAuth } from "../contexts/AuthContext";
 
 //Lodash
 import _ from "lodash";
 import Colors from "../constants/Colors";
 
+//Roommate Profile Screen
 function UserDetailScreen(props) {
 	const { users, currentUser } = useAuth();
 

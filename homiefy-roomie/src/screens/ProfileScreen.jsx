@@ -28,22 +28,24 @@ import { useAuth } from "../contexts/AuthContext";
 import { useRent } from "../contexts/RentContext";
 import { useShop } from "../contexts/ShopContext";
 
+// user profile screen
 function ProfileScreen(props) {
 	const { users, currentUser, setCurrentUser } = useAuth();
 	const { rentItems } = useRent();
 	const { shopItems } = useShop();
 
 	const [profile, setProfile] = useState(currentUser);
+	const [message, setMessage] = useState();
 	const [selectedProfileImage, setSelectedProfileImage] = useState(null);
 	const [loading, setLoading] = useState(false);
-	const [imageUploading, setImageUploading] = useState(false);
 	const [moveInDate, setMoveInDate] = useState(new Date());
+	const [imageUploading, setImageUploading] = useState(false);
 
-	const [message, setMessage] = useState();
-
+	//hooks
 	const params = useParams();
 	const navigate = useNavigate();
 
+	//references
 	const firstname = useRef();
 	const lastname = useRef();
 	const email = useRef();

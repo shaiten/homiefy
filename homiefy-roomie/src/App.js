@@ -36,24 +36,6 @@ function App() {
 								<Route path="/login" element={<LoginScreen />} />
 								<Route path="/register" element={<RegistrationScreen />} />
 								<Route
-									exact
-									path="/profile"
-									element={
-										<PrivateRoute>
-											<ProfileScreen />
-										</PrivateRoute>
-									}
-								/>
-								<Route
-									exact
-									path="/profile/:id"
-									element={
-										<PrivateRoute>
-											<UserDetailScreen />
-										</PrivateRoute>
-									}
-								/>
-								<Route
 									path="/rent"
 									exact={true}
 									element={<RentsListingScreen />}
@@ -105,6 +87,34 @@ function App() {
 										</PrivateRoute>
 									}
 								/>
+<<<<<<< Updated upstream
+=======
+
+								{/* Authentication */}
+								<Route path="/login" element={<LoginScreen />} />
+								<Route path="/register" element={<RegistrationScreen />} />
+
+								{/* Profile Screen for user and roommates */}
+								<Route
+									exact
+									path="/profile"
+									element={
+										<PrivateRoute>
+											<ProfileScreen />
+										</PrivateRoute>
+									}
+								/>
+								<Route
+									exact
+									path="/profile/:id"
+									element={
+										<PrivateRoute>
+											<UserDetailScreen />
+										</PrivateRoute>
+									}
+								/>
+
+>>>>>>> Stashed changes
 								<Route path="*" exact={true} element={<InvalidRouteScreen />} />
 							</Routes>
 							{/* </div> */}
