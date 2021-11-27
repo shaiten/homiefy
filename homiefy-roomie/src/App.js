@@ -87,8 +87,6 @@ function App() {
 										</PrivateRoute>
 									}
 								/>
-<<<<<<< Updated upstream
-=======
 
 								{/* Authentication */}
 								<Route path="/login" element={<LoginScreen />} />
@@ -114,7 +112,6 @@ function App() {
 									}
 								/>
 
->>>>>>> Stashed changes
 								<Route path="*" exact={true} element={<InvalidRouteScreen />} />
 							</Routes>
 							{/* </div> */}
