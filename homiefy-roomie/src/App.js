@@ -7,8 +7,7 @@ import AuthProvider from "./contexts/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
 import HomeScreen from "./screens/HomeScreen";
 import InvalidRouteScreen from "./screens/InvalidRouteScreen";
-import LoginScreen from "./screens/LoginScreen";
-import RegistrationScreen from "./screens/RegistrationScreen";
+
 import ProfileScreen from "./screens/ProfileScreen";
 import UserDetailScreen from "./screens/UserDetailScreen";
 import AddRentItemScreen from "./screens/AddRentItemScreen";
@@ -20,6 +19,10 @@ import ShopListingScreen from "./screens/ShopListingScreen";
 import ShopProvider from "./contexts/ShopContext";
 import ShopDetailScreen from "./screens/ShopDetailScreen";
 import CheckOutScreen from "./screens/CheckOutScreen";
+
+//Authentication
+import LoginScreen from "./screens/LoginScreen";
+import RegistrationScreen from "./screens/RegistrationScreen";
 
 function App() {
 	return (
@@ -33,8 +36,7 @@ function App() {
 							<Routes>
 								<Route path="/" element={<HomeScreen />} />
 								<Route path="/home" element={<HomeScreen />} />
-								<Route path="/login" element={<LoginScreen />} />
-								<Route path="/register" element={<RegistrationScreen />} />
+
 								<Route
 									path="/rent"
 									exact={true}
@@ -114,6 +116,11 @@ function App() {
 										</PrivateRoute>
 									}
 								/>
+
+								{/* Authentication */}
+								<Route path="/login" element={<LoginScreen />} />
+								<Route path="/register" element={<RegistrationScreen />} />
+
 								<Route path="*" exact={true} element={<InvalidRouteScreen />} />
 							</Routes>
 							{/* </div> */}

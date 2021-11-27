@@ -1,9 +1,10 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router";
 
-import { insertUser, signUp } from "../api/AuthApi";
-
 import WebButton from "../components/WebButton";
+
+//Authentication
+import { insertUser, signUp } from "../api/AuthApi";
 
 // Registration Screen or Page
 function RegistrationScreen(props) {
