@@ -14,18 +14,19 @@ import _ from "lodash";
 import { useShop } from "../contexts/ShopContext";
 
 //Checkout screen for payment
+
 function CheckOutScreen(props) {
 	const { users, currentUser } = useAuth();
 	const { shopItems, handleShopItem } = useShop();
 
 	const [loading, setLoading] = useState(false);
-	const [shopItem, setShopItem] = useState();
 	const [shopUser, setShopUser] = useState();
+	const [shopItem, setShopItem] = useState();
 
 	const [message, setMessage] = useState();
 
-	const [cardHolder, setCardHolder] = useState();
 	const [cardNumber, setCardNumber] = useState("0000000000000000");
+	const [cardHolder, setCardHolder] = useState();
 	const [cvv, setCvv] = useState("123");
 	const [expDate, setExpDate] = useState(new Date());
 
