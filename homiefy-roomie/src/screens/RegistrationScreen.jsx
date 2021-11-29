@@ -89,7 +89,7 @@ function RegistrationScreen(props) {
 							<div className="row" style={{ marginBottom: 25 }}>
 								<div className="col">
 									<div className="form-group">
-										<label for="firstname">
+										<label htmlFor="firstname">
 											<i className="fa fa-user material-icons-name"></i>
 										</label>
 										<input
@@ -103,7 +103,7 @@ function RegistrationScreen(props) {
 								</div>
 								<div className="col">
 									<div className="form-group">
-										<label for="lastname">
+										<label htmlFor="lastname">
 											<i className="fa fa-user material-icons-name"></i>
 										</label>
 										<input
@@ -117,7 +117,7 @@ function RegistrationScreen(props) {
 								</div>
 							</div>
 							<div className="form-group">
-								<label for="email">
+								<label htmlFor="email">
 									<i className="fa fa-envelope"></i>
 								</label>
 								<input
@@ -129,7 +129,7 @@ function RegistrationScreen(props) {
 								/>
 							</div>
 							<div className="form-group">
-								<label for="pass">
+								<label htmlFor="pass">
 									<i className="fa fa-lock"></i>
 								</label>
 								<input
