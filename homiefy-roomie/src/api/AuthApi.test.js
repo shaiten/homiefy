@@ -46,9 +46,15 @@ test("Sign In User with Invalid Credentials", async () => {
 });
 
 test("Insert User Details", async () => {
+  await supabase.from("users").delete().match({ email: "johndoe@test.com" });
+
   const status = await supabase
     .from("users")
-    .insert({ email: "johndoe@test.com", firstname: "John", lastname: "Doe" })
+    .insert({
+      email: "johndoe@test.com",
+      firstname: "John",
+      lastname: "Doe",
+    })
     .single()
     .then(({ data }) => {
       if (data) return 200;
