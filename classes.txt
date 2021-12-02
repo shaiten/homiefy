@@ -1,0 +1,16 @@
+# List of classes that needs to be implemented
+
+We are using React and Supabase, we are not using classes in our impplementation. 
+We are having components like 
+
+Navbar
+Sign In
+Sign Up
+Profile
+Posts
+RemovePosts
+Market
+Search
+
+
+More components will be added in the future.
