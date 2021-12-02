@@ -1,8 +1,0 @@
-list of classes that you think needs to be implemented
-i used functions such as 
-
-fetchPosts
-createPost
-setPost
-
-and the rest was jsx
