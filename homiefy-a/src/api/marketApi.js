@@ -2,7 +2,7 @@ import { supabase } from "../config/supabase";
 
 const getMarketPosts = (observer) => {
 	supabase
-		.from("posts")
+		.from("items")
 		.select()
 		.then(({ error, data }) => {
 			if (error) return observer({ error });
@@ -14,7 +14,7 @@ const getMarketPosts = (observer) => {
 
 const createMarketPost = (post, observer) => {
   	supabase
-		.from("posts")
+		.from("items")
 		.insert(post)
 		.single()
 		.then(({ error, data }) => {
