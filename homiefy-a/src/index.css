@@ -30,3 +30,17 @@ code {
 .posting-col{
   height: 100%;
 }
+
+.marketPosting {
+  margin-top: 2%;
+}
+
+.market-logo-border {
+  border: red 30px;
+}
+
+.no-pad-marg {
+ margin: 0;
+ padding: 0;
+}
+
