@@ -1,14 +1,39 @@
-version: 2.1
+# version: 2.1
+# orbs:
+#   node: circleci/node@4.7.0
+# jobs:
+#   build:
+#     executor:
+#       name: node/default
+#       tag: '10.4'
+#     steps:
+#       - checkout
+#       - node/with-cache:
+#           steps:
+#             - run: npm install
+#       - run: npm run test
 orbs:
   node: circleci/node@4.7.0
-jobs:
-  build:
-    executor:
-      name: node/default
-      tag: '10.4'
-    steps:
-      - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-      - run: npm run test
+  release-train:
+  orbs:
+  node: circleci/node@4.7.0
+    commands:
+      install-dependencies:
+        steps:
+          - node/install-package-manager:
+              yarn: true
+          - node/with-cache:
+              cache-key: 'yarn.lock'
+              steps:
+                - run:
+                    name: Install Dependencies
+                    command: yarn install
+    jobs:
+      create-release:
+        docker:
+          - image: circleci/node:9.6.1
+        steps:
+          - checkout
+          - install-dependencies
+          - run:
+          command: echo crons/createRelease.js
