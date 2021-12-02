@@ -1,11 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { supabase } from "../supabaseClient";
 
 
 import SignUpModal from "./SignUpModal";
 import SignInModal from "./SignInModal";
 
 const Navbar = () => {
+  const { currentUser, setcurruser } = useAuth();
+  const history = useHistory();
+
+  async function handleSignOut() {
+    const { error } = await supabase.auth.signOut();
+    setcurruser();
+    history.push("/");
+  }
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,6 +44,7 @@ const Navbar = () => {
                   Contact
                 </Link>
               </li>
+
               <li className="nav-item">
                 <Link
                   className="nav-link active"
@@ -75,6 +87,7 @@ const Navbar = () => {
                 </button>
                 <SignUpModal />
               </li>
+
             </ul>
           </div>
         </div>

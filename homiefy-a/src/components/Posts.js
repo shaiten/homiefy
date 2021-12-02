@@ -4,8 +4,10 @@ import { supabase } from "../supabaseClient";
 
 const Home = () => {
   const [posts, setPosts] = useState([])
+
   const [post, setPost] = useState ({ name: "", address: "", description: ""})
   const { name, address, description } = post
+
   useEffect(() => {
     fetchPosts()
   }, [])
@@ -21,11 +23,13 @@ const Home = () => {
     await supabase
       .from('posts')
       .insert([
+
         { name, address, description}
       ])
       .single()
       //setpost reset the form field
     setPost({ name: "", address: "", description: ""})
+
     fetchPosts()
   }
   return (
@@ -41,11 +45,14 @@ const Home = () => {
         value={address}
         onChange={e => setPost({ ...post, address: e.target.value })}
       />
+
       <input 
         placeholder="description"
         value={description}
         onChange={e => setPost({ ...post, description: e.target.value })}
       />
+
+
       <button onClick={createPost}>submit</button>
       {
         //.slice at index zero and reverse to show most recent first
@@ -63,6 +70,7 @@ const Home = () => {
             <div className="col-sm posting-col">
               <p className="half-top">{post.description}</p>
             </div>
+
           </div>
         ))
       }

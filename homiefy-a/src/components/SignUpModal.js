@@ -1,36 +1,65 @@
-import React, { useState } from "react";
-import { supabase } from "../supabaseClient";
+import React, { useState, useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { supabase } from "../supabaseClient";
 
 const SignUpModal = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const confirmPasswordRef = useRef();
+  const firstNameRef = useRef();
+  const lastNameRef = useRef();
   const history = useHistory();
 
-  const handleSignup = (email, password) => {
+  const { currentUser, setcurruser } = useAuth();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function handleSignup() {
+    if (
+      firstNameRef.current.value === "" ||
+      lastNameRef.current.value === "" ||
+      emailRef.current.value === "" ||
+      passwordRef.current.value === "" ||
+      confirmPasswordRef.current.value === ""
+    ) {
+      return setError("Please Enter All the Fields!");
+    }
+
+    if (passwordRef.current.value !== confirmPasswordRef.current.value) {
+      return setError("Passwords Do Not Match!");
+    }
+
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+
     supabase.auth
       .signUp({ email, password })
       .then((response) => {
         if (response.error) {
-          console.log(response.error.message);
+          return setError("Email already exists!");
         } else {
+          setcurruser(supabase.auth.user());
           console.log("Sign Up successfull");
           console.log(response);
-          history.push("/home");
+          history.push("/posts");
         }
       })
       .catch((err) => {
-        console.log(err.response.text);
+        return setError("Cannot create account!");
       });
-  };
+    setLoading(false);
+  }
 
   const signupModal = (
+    // <div className="d-none">
     <div>
       <div
         className="modal fade"
         id="signUpModal"
         tabIndex="-1"
         aria-labelledby="signUpModalLabel"
+        data-bs-backdrop="false"
         aria-hidden="true"
       >
         <div className="modal-dialog">
@@ -54,6 +83,8 @@ const SignUpModal = () => {
                     name="firstname"
                     className="form-control"
                     placeholder="First Name"
+                    ref={firstNameRef}
+                    required={true}
                   />
                 </div>
                 <div className="mb-3">
@@ -62,6 +93,8 @@ const SignUpModal = () => {
                     name="lastname"
                     className="form-control"
                     placeholder="Last Name"
+                    ref={lastNameRef}
+                    required={true}
                   />
                 </div>
                 <div className="mb-3">
@@ -70,8 +103,8 @@ const SignUpModal = () => {
                     name="email"
                     className="form-control"
                     placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    ref={emailRef}
+                    required={true}
                   />
                 </div>
                 <div className="mb-3">
@@ -80,8 +113,8 @@ const SignUpModal = () => {
                     name="password"
                     className="form-control"
                     placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    ref={passwordRef}
+                    required={true}
                   />
                 </div>
                 <div className="mb-3">
@@ -90,8 +123,15 @@ const SignUpModal = () => {
                     name="password2"
                     className="form-control"
                     placeholder="Confirm Password"
+                    ref={confirmPasswordRef}
+                    required={true}
                   />
                 </div>
+                {error && <div className="alert alert-danger">{error}</div>}
+                {currentUser && currentUser.email}
+                {currentUser
+                  ? console.log("curr user is ", currentUser.email)
+                  : console.log("no curr user")}
               </form>
             </div>
             <div className="modal-footer">
@@ -103,13 +143,14 @@ const SignUpModal = () => {
                 Cancel
               </button>
               <button
-                type="button"
+                type="submit"
+                disabled={loading}
                 onClick={(e) => {
                   e.preventDefault();
-                  handleSignup(email, password);
+                  handleSignup();
                 }}
                 className="btn btn-primary"
-                data-bs-dismiss="modal"
+                // data-bs-dismiss="modal"
               >
                 Sign Up
               </button>
